@@ -1,25 +1,24 @@
-import logo from './logo.svg';
 import './App.css';
+import {useSelector, useDispatch} from "react-redux";
+import {
+    increment,
+    decrement,
+    reset,
+} from "./actions/action";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const counter = useSelector(state => state.counter)
+    const dispatch = useDispatch();
+
+    return (
+        <div className="App">
+            <h1>это хуита должна считать</h1>
+            <h3>{counter}</h3>
+            <button onClick={() => dispatch(increment())}>+очко</button>
+            <button onClick={() => dispatch(decrement())}>-очко</button>
+            <button onClick={() => dispatch(reset())}>обнулить</button>
+        </div>
+    );
 }
 
 export default App;
